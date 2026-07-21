@@ -4,7 +4,7 @@
 
 Build trust before scale and feel before features.
 
-The first technical risk is historical correctness. The first product risk is whether moving pucks and connecting strings genuinely feels satisfying. The roadmap tackles those risks before accounts, leaderboards, or a large content catalog.
+The first technical risk is historical correctness. The first product risk is whether arranging pinned notes and connecting strings genuinely feels satisfying. The roadmap tackles those risks before accounts, leaderboards, or a large content catalog.
 
 Milestones use exit criteria rather than promised dates. A milestone is complete when its outcome is demonstrated.
 
@@ -76,6 +76,8 @@ Milestones use exit criteria rather than promised dates. A milestone is complete
 - source versions and attribution are recorded;
 - disputed edges can be hidden without changing source data.
 
+**Current status:** the modern-era proof is operational against pinned F1DB `v2026.10.0`. It generates the 130-driver browser graph, retains shared-event summaries, calculates par routes, supports pair queries, and passes the domain and historical regression suites. Remaining proof work is graph-diff and quality reporting, second-source comparison, an explicit disputed-edge suppression workflow, the era-cutoff decision, and early-era exception fixtures before expanding beyond the current scope.
+
 ## Milestone 2 — Interaction prototype
 
 **Goal:** prove that the board is enjoyable and controllable.
@@ -85,7 +87,7 @@ Use a small hand-authored data set so interaction can be tested independently fr
 ### Work
 
 - responsive board;
-- draggable pucks;
+- draggable pinned notes;
 - string pulling and snapping;
 - movable completed layout;
 - team-label prompt;
@@ -99,7 +101,7 @@ Use a small hand-authored data set so interaction can be tested independently fr
 
 ### Test questions
 
-- Do pucks feel physical without drifting?
+- Do pinned notes feel physical without drifting?
 - Is creating a connection obvious?
 - Can labels remain readable after rearranging?
 - Is the team-selection step quick?
@@ -116,6 +118,8 @@ Use a small hand-authored data set so interaction can be tested independently fr
 - reduced motion preserves the full game;
 - valid completion feels satisfying with and without sound.
 
+**Current status:** the interaction proof is integrated into the real-data vertical slice. Direct note dragging, pin/release behavior, string creation, team selection, Undo, Remove, Auto-arrange, completion, keyboard movement, reduced motion, and optional sound/haptics are implemented and regression-tested. Representative touch-device observation and feedback tuning remain open, so the milestone is functionally proven but still awaits the same human quality gate as Milestone 3.5.
+
 ## Milestone 3 — Playable vertical slice
 
 **Goal:** connect the trusted graph to the proven board in one polished flow.
@@ -123,7 +127,7 @@ Use a small hand-authored data set so interaction can be tested independently fr
 ### Work
 
 - load versioned generated graph;
-- driver search and tray;
+- driver search and board-level picker;
 - target-pair selection;
 - driver-and-team validation;
 - evidence cards;
@@ -146,6 +150,59 @@ Use a small hand-authored data set so interaction can be tested independently fr
 - an interrupted puzzle restores safely;
 - representative mobile performance is smooth.
 
+**Current status:** the feature-complete vertical slice is available for private testing. Automated graph, rendering, restoration, curated-route, keyboard-path, settings, and narrow-layout guards pass. Milestone 3.5 has begun through continued prototype testing, but Milestone 3 does not receive final sign-off until representative real-device mobile performance and first-time usability are observed.
+
+## Milestone 3.5 — Design system and interaction polish
+
+**Goal:** turn the proven vertical slice into a distinctive, coherent experience before expanding the feature set.
+
+This is an explicit product gate, not a final coat of paint. It starts only after the graph, rules, and core interaction model are stable enough to avoid redesigning the same flows twice, and it must finish before Milestone 4 grows the product surface.
+
+### Work
+
+- formalize visual tokens for color, typography, spacing, surfaces, elevation, and motion;
+- create a recognizable pinned-note, string, team-label, evidence, and completion language that does not imitate an F1 broadcast package;
+- tune drag, snap, settling, selection, verification, and completion feedback as one interaction system;
+- redesign the board, tray, and controls for narrow mobile screens rather than merely stacking desktop panels;
+- establish onboarding and information hierarchy for first-time players;
+- complete high-contrast, focus, reduced-motion, screen-reader, sound-off, and color-independent states;
+- produce an original sound and haptics pass with independent mute controls;
+- document reusable components and historical team-palette rules;
+- run usability and visual QA on representative phones, tablets, laptops, pointer devices, touch, and keyboards;
+- align link previews and share artifacts with the product identity.
+
+### Exit criteria
+
+- the product is recognizable from its board and interaction language without relying on official F1 trade dress;
+- a first-time tester can understand the board and complete a route without spoken explanation;
+- mouse, touch, and keyboard have equivalent complete flows;
+- the board, team labels, and evidence remain legible on a narrow phone;
+- reduced motion, high contrast, sound-off, and screen-reader paths preserve the full game;
+- design tokens and reusable interaction components are documented;
+- the interaction feel has defined benchmarks and passes real-device testing;
+- a visual and accessibility review explicitly approves progression to Milestone 4.
+
+**Current status:** in progress.
+
+Completed or established in the prototype:
+
+- canvas-first papyrus evidence sheet and dark-desk visual system;
+- pinned driver notes, falling pushpins, temporary pinholes, and fibrous team strings;
+- mouse-first string creation followed by a searchable all-team grid;
+- familiar racing names, board-level driver discovery, and shared one-result keyboard confirmation;
+- persistent System/Full/Reduced motion and Standard/High contrast settings;
+- muted procedural pickup/placement thumps, ascending C-major violin-like link notes, a soft tonic completion phrase, and independent device-local sound and haptics controls;
+- reduced-motion pin behavior, visible focus treatment, keyboard fallback controls, and a matching social-preview card.
+
+Remaining before the design gate closes:
+
+- formalize reusable design tokens and interaction benchmarks;
+- redesign and manually verify the board on narrow phones and touch devices;
+- complete screen-reader, focus-order, color-independence, and high-contrast review;
+- tune the original sound and haptics system through sound-on, sound-off, and representative-device testing;
+- run representative phone, tablet, laptop, pointer, touch, and keyboard usability sessions;
+- record explicit visual and accessibility approval to progress to Milestone 4.
+
 ## Milestone 4 — MVP feature set
 
 **Goal:** create a small complete product suitable for private testing.
@@ -159,12 +216,15 @@ Use a small hand-authored data set so interaction can be tested independently fr
 - local statistics and streaks;
 - spoiler-safe and full-route sharing;
 - settings;
-- audio mixing and original sound pass;
-- visual design tokens and historical team palettes;
-- high-contrast mode;
-- accessibility audit;
+- expose the finalized sound, motion, contrast, and accessibility controls in settings;
 - data attribution and independent-project disclaimer;
 - local-data clear and export controls.
+
+Already prototyped: deterministic graph-versioned Daily Chain selection and local completion memory, Free Play, Formation Lap challenges, persistent motion, contrast, sound, and haptics settings, local round restoration, evidence inspection, attribution/disclaimer copy, and structured data-report preparation.
+
+Still to build: Grand Prix and Night Race difficulty tiers, expanded reviewed candidate generation, local statistics and streaks, spoiler-safe and full-route sharing, and local-data export/reset.
+
+Later hint research may add race dossiers: seeded race-result packets containing useful evidence plus fair red herrings. This remains an experiment until direct hints, data packaging, mobile presentation, and fairness rules are proven.
 
 ### Exit criteria
 
@@ -257,7 +317,7 @@ Do not pursue all of these automatically. Each expansion should solve an observe
 - regression fixtures;
 - fast edge validation;
 - any-valid-chain completion;
-- accessible puck and link controls;
+- accessible note and link controls;
 - readable responsive board;
 - Undo and Auto-arrange;
 - Daily Chain versioning;
@@ -277,7 +337,7 @@ Do not pursue all of these automatically. Each expansion should solve an observe
 ### Could have
 
 - alternate-route enumeration;
-- advanced puck collisions;
+- advanced note-overlap and string-routing assistance;
 - share images;
 - custom challenge options;
 - historical lineage explorer;
@@ -334,9 +394,12 @@ Do not pursue all of these automatically. Each expansion should solve an observe
 
 ## Immediate recommended next action
 
-Start Milestone 1 and Milestone 2 in parallel at the workstream level:
+Close the remaining Milestone 3/3.5 quality gates before expanding the feature surface:
 
-- one small data proof using a selected modern-era slice;
-- one interaction prototype using a hand-authored graph of roughly a dozen drivers.
+1. run first-time, narrow-phone, touch, keyboard, and screen-reader playtests against the current private prototype;
+2. fix the interaction and responsive defects those sessions reveal;
+3. tune sound and haptics on representative hardware while verifying complete sound-off parity;
+4. formalize the design tokens, interaction benchmarks, and accessibility review record;
+5. then expand the Daily Chain candidate pool and add local streak/history plus spoiler-safe sharing.
 
-The two workstreams should meet at Milestone 3 only after each has passed its exit criteria.
+Race-dossier hints should be explored after the direct hint baseline and Daily puzzle packaging are stable, because the feature requires additional per-race data, deterministic evidence packets, and fairness validation.

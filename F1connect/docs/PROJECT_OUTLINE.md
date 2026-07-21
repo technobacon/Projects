@@ -2,7 +2,7 @@
 
 ## One-sentence summary
 
-Paddock Links is a tactile browser game in which players connect two Formula 1 drivers through current or former teammates, naming each shared team while arranging the resulting relationship graph as movable pucks and colored strings.
+Paddock Links is a tactile browser game in which players connect two Formula 1 drivers through current or former teammates, naming each shared team while arranging the resulting relationship graph as pinned paper notes and colored strings.
 
 ## Product vision
 
@@ -72,7 +72,7 @@ A satisfying round should take a few minutes, while Free Play and historical exp
 1. Receive two target drivers and a difficulty indication.
 2. Recall or discover a driver who may connect to one endpoint.
 3. Place that driver on the board.
-4. Connect two pucks and name their shared team.
+4. Connect two pinned notes and name their shared team.
 5. Receive immediate validation and sensory feedback.
 6. Repeat until the endpoints are linked.
 7. Review the route, par, alternatives, evidence, and share result.
@@ -130,8 +130,8 @@ The MVP includes:
 
 - browser and mobile-browser support;
 - Daily Chain and Free Play;
-- searchable driver tray;
-- movable pucks and elastic connections;
+- searchable board-level driver picker;
+- movable pinned notes and tactile string connections;
 - team selection and exact validation;
 - any-valid-route completion;
 - par calculation;
@@ -194,7 +194,7 @@ These metrics should diagnose the experience, not push the product toward puniti
 
 ### Physics becomes frustrating
 
-**Risk:** pucks drift, strings obscure labels, or mobile dragging feels imprecise.
+**Risk:** notes or pins obscure evidence, strings obscure labels, or mobile dragging feels imprecise.
 
 **Response:** prioritize direct manipulation, damping, snap zones, undo, auto-arrange, and a non-physics interaction mode.
 
@@ -215,7 +215,7 @@ These metrics should diagnose the experience, not push the product toward puniti
 - What era should the first audited dataset cover?
 - Should the team answer be typed, selected, or support both?
 - How should longer-than-par routes affect the result presentation?
-- Should unused pucks count against a result?
+- Should unused notes count against a result?
 - When does a hint become a reveal rather than guidance?
 - Should a daily puzzle permit unlimited attempts?
 - What information can be shared without spoiling the route?

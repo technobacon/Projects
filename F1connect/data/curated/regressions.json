@@ -1,0 +1,70 @@
+[
+  {
+    "id": "current-teammates-mclaren",
+    "type": "connection",
+    "driverAId": "lando-norris",
+    "driverBId": "oscar-piastri",
+    "constructorIds": ["mclaren"]
+  },
+  {
+    "id": "verstappen-sainz-toro-rosso",
+    "type": "connection",
+    "driverAId": "max-verstappen",
+    "driverBId": "carlos-sainz-jr",
+    "constructorIds": ["toro-rosso"]
+  },
+  {
+    "id": "sainz-leclerc-ferrari",
+    "type": "connection",
+    "driverAId": "carlos-sainz-jr",
+    "driverBId": "charles-leclerc",
+    "constructorIds": ["ferrari"]
+  },
+  {
+    "id": "button-barrichello-multiple-teams",
+    "type": "connection",
+    "driverAId": "jenson-button",
+    "driverBId": "rubens-barrichello",
+    "constructorIds": ["brawn", "honda"]
+  },
+  {
+    "id": "mid-season-driver-overlap",
+    "type": "connection",
+    "driverAId": "nyck-de-vries",
+    "driverBId": "yuki-tsunoda",
+    "constructorIds": ["alphatauri"]
+  },
+  {
+    "id": "same-season-non-overlap",
+    "type": "noConnection",
+    "driverAId": "nyck-de-vries",
+    "driverBId": "liam-lawson"
+  },
+  {
+    "id": "did-not-start-is-evidence",
+    "type": "connection",
+    "driverAId": "alexander-albon",
+    "driverBId": "franco-colapinto",
+    "constructorIds": ["williams"],
+    "evidenceEventId": "2024-21"
+  },
+  {
+    "id": "practice-only-driver-excluded",
+    "type": "excludedDriver",
+    "driverId": "arthur-leclerc"
+  },
+  {
+    "id": "similar-family-names-remain-distinct",
+    "type": "noConnection",
+    "driverAId": "michael-schumacher",
+    "driverBId": "ralf-schumacher"
+  },
+  {
+    "id": "documented-hadjar-leclerc-par",
+    "type": "route",
+    "startDriverId": "isack-hadjar",
+    "targetDriverId": "charles-leclerc",
+    "par": 3
+  }
+]
+
