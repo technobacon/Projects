@@ -9,13 +9,13 @@ The board should feel playful and physical, but the rules should feel exact. The
 ## Terminology
 
 - **Target drivers:** the two drivers that must be connected.
-- **Driver puck:** a movable token representing one driver.
-- **Link:** a validated teammate relationship between two driver pucks.
+- **Driver note:** a movable paper case note representing one driver.
+- **Link:** a validated teammate relationship between two driver notes.
 - **Team label:** the historical constructor identity that proves a link.
 - **Chain:** a continuous series of validated links between the target drivers.
 - **Par:** the number of links in a shortest valid route known to the current dataset.
-- **Board:** the interactive space containing pucks, strings, labels, and controls.
-- **Unused puck:** a driver placed on the board who is not part of the completed chain.
+- **Board:** the interactive evidence sheet containing pinned notes, strings, labels, and controls.
+- **Unused note:** a driver placed on the board who is not part of the completed chain.
 
 ## Winning condition
 
@@ -64,7 +64,7 @@ Creating a link is a two-part answer:
 1. choose the second driver;
 2. name the shared team.
 
-Recommended MVP input is a compact searchable selector containing plausible team names. Typed input can be added if aliases, spelling, and localization are handled safely.
+The current input is a searchable mouse-first grid of all historical team names. If search leaves one result, Enter confirms it; Arrow Down moves focus into the grid. A compact form remains available as the keyboard-accessible fallback.
 
 If two drivers shared multiple valid teams, any one of those teams completes the link. The post-game evidence view can reveal the alternatives.
 
@@ -74,9 +74,9 @@ The game should accept reviewed aliases and formatting variations while displayi
 
 ### Pointer and touch
 
-- Drag a driver from the tray or tap to add it.
-- Move any non-locked puck freely.
-- Pull from a puck's connection handle to another puck.
+- Open **Add driver** from the board or press **Shift + Space**, then search or browse the driver grid.
+- Move any non-locked note freely. Picking it up drops its pushpin and leaves a puncture that fades over ten seconds; release pins it at the new position.
+- Pull from a note's connection handle to another note.
 - Choose a team in the label prompt.
 - Drag the center of a validated string or its label to improve the layout.
 - Select a link to inspect, replace, or remove it.
@@ -85,24 +85,24 @@ The game should accept reviewed aliases and formatting variations while displayi
 ### Keyboard and assistive interaction
 
 - Search and add a driver without dragging.
-- Navigate pucks and links in a logical list.
+- Navigate notes and links in a logical order.
 - Select two drivers, choose Connect, then choose a team.
-- Move a selected puck with arrow controls or use Auto-arrange.
+- Move a selected note with arrow controls or use Auto-arrange.
 - Receive validation through text and status announcements, not color or sound alone.
 
-### Physics behavior
+### Physical behavior
 
-Pucks should have a small sense of weight, inertia, collision, and friction. Strings should bend or stretch enough to feel alive while preserving legibility.
+Notes should feel pinned to the sheet rather than free-floating. Strings should retain a fibrous, tactile appearance while preserving legibility.
 
 Physics must yield to player intent:
 
 - dragging is direct and immediate;
-- released pucks settle quickly;
-- target pucks may be movable but visually distinguished;
+- released notes stop exactly where placed and immediately regain a pushpin;
+- target notes may be movable but remain visually distinguished;
 - labels avoid severe overlap;
 - a Reset layout action never deletes the answer;
 - Auto-arrange creates a readable chain;
-- reduced-motion mode disables inertia and elastic oscillation.
+- reduced-motion mode removes the loose-pin fall and nonessential transitions while preserving the pinhole and final pinned state.
 
 ## Feedback language
 
@@ -146,7 +146,7 @@ A result should record:
 - elapsed active time;
 - hints used;
 - invalid connection attempts;
-- unused pucks;
+- unused notes;
 - difficulty tier;
 - puzzle identifier and data version;
 - accessibility or assistance modes only when needed to interpret competitive results.
@@ -174,15 +174,32 @@ Hints should progress from contextual to explicit:
 1. reveal the relevant era for one missing connection;
 2. reveal a driver's nationality or initials;
 3. show how many valid teams connect a selected pair;
-4. highlight a useful existing puck;
+4. highlight a useful existing note;
 5. reveal one bridge driver;
 6. reveal one complete link with its team.
 
 A player may finish after any number of hints. Hints affect the result description but never remove the ability to complete or share.
 
-## Driver tray
+### Later research: race dossiers
 
-The tray should support:
+An optional advanced hint track can behave like detective work instead of revealing the next graph step. The player receives a small evidence packet—potentially ten seeded races from the puzzle's relevant year range—with each race showing its point-scoring finishers. One or more races contain evidence that can help identify a useful teammate relationship; the rest are plausible red herrings. The player must decide which race records matter.
+
+This is a later system, not part of the current direct-hint implementation. It requires a generated race-result hint package, a dossier-browsing interface, difficulty rules, and editorial safeguards.
+
+Fairness requirements:
+
+- at least one dossier must contain actionable evidence for a valid route;
+- a point-scorers-only list is usable only when the relevant drivers are actually visible in it; otherwise the dossier needs a fuller classification or constructor-entry view;
+- red herrings must be plausible but must not depend on disputed or misleading records;
+- Daily Chain dossiers must be deterministic and frozen with the puzzle's graph and source versions;
+- the UI must state the race, season, and scope clearly without revealing which dossier is useful;
+- requesting a dossier can affect the hint count, but it must never invalidate a completion.
+
+Open questions include whether dossiers supplement or replace contextual hints at higher difficulties, how many races are fair at each tier, whether players may request another packet, and how much race detail remains legible on mobile.
+
+## Driver picker
+
+The picker should support:
 
 - search by surname, full name, common alias, or nationality;
 - recent and current drivers first during onboarding;
@@ -212,7 +229,7 @@ Random does not need to mean uncurated. Daily puzzles should come from a reviewe
 
 ### Onboarding
 
-A short guided puzzle teaches adding a puck, connecting drivers, choosing a team, and rearranging the board.
+A short guided puzzle teaches adding a note, connecting drivers, choosing a team, and rearranging the board.
 
 ### Daily Chain
 
@@ -222,6 +239,8 @@ A short guided puzzle teaches adding a puck, connecting drivers, choosing a team
 - local streak and history;
 - spoiler-safe sharing;
 - frozen data version until the daily cycle ends.
+
+The prototype derives one reviewed case from the Budapest calendar date, keeps the pair stable for that full date, exposes the frozen graph version, restores an unfinished daily board, and records that date's completion locally. Streak history and spoiler-safe sharing remain follow-up work.
 
 ### Free Play
 
@@ -265,7 +284,7 @@ Provide a separate explicit option to share the full route.
 - high-contrast labels and focus indicators;
 - team identity never communicated by color alone;
 - reduced motion;
-- independent sound and music controls;
+- independent sound-effects and haptics controls, persisted on the device;
 - visible captions or text equivalents for audio cues;
 - touch targets sized for small screens;
 - no essential time limit outside Sprint;
@@ -287,7 +306,7 @@ Do not record driver-search text or construct invasive player profiles. Consent 
 
 ## Open balancing questions
 
-- Should an unused puck affect only presentation or also mastery?
+- Should an unused note affect only presentation or also mastery?
 - Should invalid guesses affect a competitive result?
 - Should the team selector show all historical teams or a small plausible set?
 - How much of par should be visible before completion?

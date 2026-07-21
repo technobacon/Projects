@@ -143,6 +143,96 @@ Status values:
 
 **Consequence:** Copy such as Connected in 4 links · Par 3 is preferred over failed to find the shortest route.
 
+### PL-026 — Design polish is a dedicated product gate
+
+**Status:** Accepted
+
+**Decision:** Complete a distinct design-system and interaction-polish milestone after the playable vertical slice and before MVP feature expansion.
+
+**Rationale:** Polishing before the rules and interaction model are proven creates avoidable rework, while leaving design scattered across later feature milestones makes the experience easy to defer indefinitely.
+
+**Consequence:** Milestone 3.5 owns the visual language, interaction feel, responsive redesign, accessibility states, sound, and real-device QA. Milestone 4 does not begin until that gate passes.
+
+### PL-027 — Use familiar racing names in play
+
+**Status:** Accepted
+
+**Decision:** Driver labels use the familiar first name and racing surname, such as Lewis Hamilton and Carlos Sainz, rather than full legal names.
+
+**Rationale:** Compact familiar names are faster to scan, fit the pucks and selectors, and match how fans identify drivers during play.
+
+**Consequence:** Source records retain full names for identity and audit purposes, while the client derives a shorter display label. Name exceptions remain curated when particles or compound surnames are part of the familiar racing name.
+
+### PL-028 — Canvas-first string creation
+
+**Status:** Accepted
+
+**Decision:** The primary mouse interaction starts from a visible attachment on a puck, previews a live string to another puck, and opens a searchable grid of all historical teams only after the second puck is chosen.
+
+**Rationale:** The relationship should be built directly on the evidence board. A grid preserves mouse-only play and historical-team discovery without making a long native selector the main interaction.
+
+**Consequence:** Direct manipulation receives restrained release glide and reduced-motion support. The form-based driver and team controls remain as the keyboard-accessible fallback.
+
+### PL-029 — Paper case board is the primary visual surface
+
+**Status:** Accepted — 2026-07-21
+
+**Decision:** Make the playable canvas the dominant surface: an oversized warm papyrus evidence sheet on a dark desk, with neutral ivory and beige driver pucks, elegant serif names, and the **Add driver** control embedded in the board's top-right corner.
+
+**Rationale:** The graph is the product's distinctive toy. Reducing surrounding chrome and moving discovery onto the board keeps attention on arranging evidence, while neutral pieces let historically meaningful team-colored strings remain visually legible.
+
+**Consequence:** Driver discovery opens as a searchable mouse-first grid instead of a permanent bottom tray. Side controls remain compact and secondary, team colors are not used to decorate driver pucks, and future visual polish should extend the archival detective language without reducing contrast, keyboard access, or touch usability.
+
+### PL-030 — Drivers are pinned notes, not sliding pucks
+
+**Status:** Accepted — 2026-07-21
+
+**Decision:** Represent each driver as a paper case note secured by a pushpin. Picking up a note drops its pin and leaves a puncture that fades over ten seconds; releasing the note pins it at the new position. Verified relationships use visibly fibrous string rather than smooth technical lines.
+
+**Rationale:** A pinned-note system makes the detective-board metaphor immediately legible and gives movement a purposeful physical beginning and end. The falling pin and temporary hole communicate that the note has been lifted without relying on inertia.
+
+**Consequence:** This supersedes the release-glide portion of PL-028. Notes stop exactly where released, strings connect at their pins, and reduced-motion mode may suppress the falling animation while preserving the pinhole and repinned end state. **Shift + Space** opens driver discovery; when search produces one available driver, **Enter** adds that note.
+
+### PL-031 — Search pickers share one-result keyboard confirmation
+
+**Status:** Accepted — 2026-07-21
+
+**Decision:** Driver and historical-team pickers use the same search convention: when the current query leaves exactly one result, **Enter** confirms it; **Arrow Down** moves focus from the search field into the result grid.
+
+**Rationale:** The same keystroke should mean the same thing in adjacent selection steps. A visible one-match hint makes the accelerator discoverable without weakening mouse-only play.
+
+**Consequence:** Enter never guesses among multiple results. Native button activation remains available after moving into the grid, and an invalid single team still follows normal validation and error feedback rather than silently closing the picker.
+
+### PL-032 — Accessibility preferences are explicit and device-local
+
+**Status:** Accepted — 2026-07-21
+
+**Decision:** Provide a Settings dialog with System, Full, and Reduced motion choices plus Standard and High contrast choices. Persist these preferences locally on the device.
+
+**Rationale:** Operating-system preferences remain the correct default, but testers need to exercise accessibility states directly and players may want a game-specific choice. Device-local storage fits the account-free prototype and avoids implying cross-device synchronization.
+
+**Consequence:** Reduced motion suppresses the loose-pin fall and nonessential transitions while preserving the pinhole and final pinned state. Full motion can be selected explicitly; System follows `prefers-reduced-motion`. High contrast strengthens paper, note, label, modal, and focus boundaries without changing historical team identity or removing text labels.
+
+### PL-033 — Feedback is procedural, optional, and redundant
+
+**Status:** Accepted — 2026-07-21
+
+**Decision:** Generate muted pickup/placement thumps, ascending C-major violin-like valid-link notes, a soft tonic violin completion phrase, and restrained invalid-evidence cues with Web Audio. Pair them with optional browser haptics and expose independent device-local switches for both channels.
+
+**Rationale:** Procedural cues establish an original sound identity without introducing licensed assets or a download budget. Independent controls let players choose the feedback that works for their context and device.
+
+**Consequence:** Audio and vibration reinforce existing motion, text, and status feedback but never carry required information. Unsupported haptics silently no-op, mute persists locally, and real-device testing remains required before the design gate closes.
+
+### PL-034 — Daily Chain follows the Budapest calendar
+
+**Status:** Accepted — 2026-07-21
+
+**Decision:** Select the Daily Chain deterministically from the reviewed puzzle pool using the current Europe/Budapest calendar date. Persist the mode, date key, frozen graph version, and that date's completion locally.
+
+**Rationale:** A single explicit timezone gives every player the same rollover boundary and makes daily results reproducible without a scheduling backend. Reusing reviewed cases keeps the first implementation trustworthy while the candidate pipeline grows.
+
+**Consequence:** The daily pair cannot be rerolled during its date, but it may be replayed. A stale unfinished daily round is not restored after rollover. Formation Lap and Free Play remain independently selectable, while streak history and spoiler-safe sharing are separate follow-up work.
+
 ## Provisional implementation decisions
 
 ### PL-014 — Static-first MVP
@@ -183,16 +273,9 @@ Status values:
 
 ### PL-018 — Team input method
 
-**Status:** Open
+**Status:** Superseded
 
-Options:
-
-- searchable selector;
-- typed input with aliases;
-- selector during onboarding and optional typing later;
-- a small plausible multiple-choice set for specific modes.
-
-Decision criteria include speed, accessibility, spelling fairness, localization, and resistance to blind guessing.
+**Decision:** Replaced by PL-028. The primary input is a searchable all-team grid after a canvas string is completed, with form controls retained as an accessible fallback.
 
 ### PL-019 — Scoring details
 
@@ -252,6 +335,18 @@ Decide whether the primary share artifact is:
 **Status:** Open
 
 Prototype contextual hints before fixed penalties. The first version must determine whether era, nationality, team count, initials, or bridge reveal is most useful.
+
+**Later candidate — race dossiers:** instead of revealing the next graph step, provide a seeded packet of race evidence from the puzzle's year range, such as ten races with their point-scoring finishers. At least one record should help identify a useful teammate relationship while other records act as plausible red herrings. The player investigates which races matter.
+
+This candidate remains open and should not replace the direct-hint baseline until validated. It requires additional per-race client data or prebuilt hint packets, a dossier interface, deterministic versioning for Daily Chain, and explicit fairness rules. A point-scorers-only record is not actionable when the relevant teammate finished outside the points or failed to finish, so packet generation must either select races where the needed drivers are visible or expose a fuller classification/constructor-entry view.
+
+Validation questions:
+
+- Are dossier hints an alternate high-difficulty track or a later step in the normal hint sequence?
+- How many useful records and red herrings are fair at each difficulty?
+- Can a player request a new packet, and what does that cost?
+- Does the system teach historical context or merely encourage scanning names?
+- Can ten race records remain understandable on a narrow phone and through a screen reader?
 
 ### PL-024 — Hosting, analytics, and error reporting
 

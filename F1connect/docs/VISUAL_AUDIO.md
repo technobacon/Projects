@@ -2,7 +2,7 @@
 
 ## Creative statement
 
-Paddock Links should feel like a quiet, premium investigation table assembled inside a Formula 1 garage: cool surface, precise typography, colored technical cords, satisfying mechanical movement, and restrained bursts of race-day energy.
+Paddock Links should feel like a quiet, premium investigation table assembled in a private racing archive: a warm paper case sheet on a dark desk, elegant typography, colored cords, satisfying mechanical movement, and restrained bursts of race-day energy.
 
 It should not imitate a television timing tower or cover the screen in carbon-fiber clichés. The board is the identity.
 
@@ -13,7 +13,7 @@ It should not imitate a television timing tower or cover the screen in carbon-fi
 The name suggests:
 
 - the relationships formed across the paddock;
-- literal links drawn between driver pucks;
+- literal links drawn between pinned driver notes;
 - a friendly, curious tone rather than a formal statistics product;
 - room to grow beyond a single daily mode.
 
@@ -27,9 +27,9 @@ A simple descriptor can accompany the name during onboarding:
 
 The eye should immediately read driver, connection, team, and route direction. Decoration must remain behind those four things.
 
-### Cold board, warm history
+### Warm evidence sheet, restrained history
 
-Use a cool neutral board and interface shell so historical team colors can carry the emotional emphasis.
+Use a papyrus-colored board, neutral ivory and beige driver pieces, and a quiet charcoal-brown interface shell. Historical team colors are reserved for strings, evidence markers, and moments where they carry meaning.
 
 ### Mechanical, not aggressive
 
@@ -41,51 +41,51 @@ Team color is a strong memory aid, but every string also carries a readable labe
 
 ### Original assets first
 
-Use original puck, string, label, flag, texture, and sound designs. Do not assume that official logos, driver photographs, helmet artwork, broadcast graphics, or commercial fonts can be used.
+Use original note, pin, string, label, flag, texture, and sound designs. Do not assume that official logos, driver photographs, helmet artwork, broadcast graphics, or commercial fonts can be used.
 
 ## Board
 
 ### Surface
 
-The board can suggest ice, glass, or a matte technical table without looking literally frozen.
+The board should read as an oversized case sheet resting on a dark investigator's desk without becoming a literal costume-prop scene.
 
 Possible qualities:
 
-- deep blue-gray or charcoal base;
-- faint vignette;
-- extremely subtle grain or brushed texture;
-- soft pooled light under active pucks;
-- restrained grid or measurement marks at low contrast;
-- no busy photographic background.
+- warm papyrus, parchment, or archival-card stock;
+- faint edge darkening and restrained paper grain;
+- soft directional shadows under lifted notes;
+- sparse measurement marks at low contrast;
+- a dark neutral desk and interface shell around the sheet;
+- no busy photographic background or decorative clutter in the playable surface.
 
 ### Spatial zones
 
-- target puck at each side during onboarding;
+- pinned target note at each side during onboarding;
 - open central construction space;
-- compact driver tray and search;
+- **Add driver** control in the board's top-right corner, opening a searchable mouse-first grid;
 - top bar for puzzle name, difficulty, and settings;
 - bottom or side actions for Hint, Undo, Auto-arrange, and Check route when needed;
 - result panel that does not immediately cover the completed board.
 
-On mobile, the tray can become a bottom sheet while the board retains most of the viewport.
+On mobile, driver discovery becomes a modal grid while the board retains most of the viewport.
 
-## Driver pucks
+## Driver notes
 
-A puck should feel grabbable before the player touches it.
+A note should feel pinned to the case board, then visibly lift away from the paper when the player grabs it.
 
 ### Anatomy
 
-- circular or gently beveled body;
-- driver initials or rights-reviewed portrait;
-- full name on an attached plate or on focus;
+- square or slightly irregular paper body;
+- driver initials as a quiet archive mark;
+- familiar racing name written directly on the note;
 - nationality or active years as optional secondary detail;
-- small start or target marker;
+- small start or target marker and a visible pushpin;
 - connection handles that appear on hover, focus, or selection;
 - clear focus ring independent of team colors.
 
 ### States
 
-- available in tray;
+- available in the driver picker;
 - placed;
 - selected;
 - being dragged;
@@ -95,7 +95,7 @@ A puck should feel grabbable before the player touches it.
 - hint-highlighted;
 - unavailable or under review.
 
-Placed pucks should cast a small directional shadow and compress slightly when picked up. Motion must remain subtle.
+Placed notes cast a small directional shadow. On pickup, the pushpin falls, the note lifts, and a small puncture remains in the sheet for ten seconds before fading. On release, a pin secures the note immediately. Notes do not glide after release.
 
 ## Strings
 
@@ -120,7 +120,7 @@ Strings are both proof and play.
 - completed-route pulse;
 - dimmed non-route string when reviewing a solution.
 
-A string may contain small knots or anchor caps at the pucks, reinforcing the satisfying snap.
+A string may contain visible fibers, small knots, or anchor caps at the pins, reinforcing the satisfying tie-down.
 
 ## Team labels
 
@@ -158,8 +158,8 @@ The type system should feel technical and confident without borrowing an officia
 
 Recommended characteristics:
 
-- compact display face for headings and result moments;
-- highly legible sans-serif for names, teams, search, and evidence;
+- elegant editorial serif for brand, headings, driver names, and evidence labels;
+- highly legible sans-serif for compact controls, search, statistics, and supporting copy;
 - tabular numerals for time and link counts;
 - generous letter clarity at small mobile sizes;
 - distinct uppercase and lowercase rather than excessive all-caps.
@@ -168,19 +168,19 @@ Driver and team names should receive typographic priority over timers and scores
 
 ## Motion language
 
-### Puck movement
+### Note movement
 
 - direct under the pointer;
-- slight inertia after release;
-- visible friction;
-- gentle puck-to-puck collision;
-- fast settling;
-- no uncontrolled ricochet.
+- visible lift and directional shadow on pickup;
+- pushpin drops as the note leaves the sheet;
+- puncture mark fades over ten seconds;
+- immediate repin at the release position;
+- no inertia or uncontrolled drift.
 
 ### String movement
 
 - stretches during connection;
-- follows moving pucks smoothly;
+- follows moving notes smoothly from their pin positions;
 - one or two damped oscillations after a snap;
 - maintains readable label placement;
 - completion pulse travels from start to target.
@@ -194,7 +194,7 @@ Driver and team names should receive typographic priority over timers and scores
 
 ### Reduced motion
 
-- eliminate inertia and oscillation;
+- eliminate loose-pin falling and string oscillation;
 - use opacity, border, and text changes;
 - Auto-arrange applies immediately or with a minimal crossfade;
 - preserve all logical feedback.
@@ -202,6 +202,8 @@ Driver and team names should receive typographic priority over timers and scores
 ## Sound identity
 
 The soundscape should resemble small mechanical objects, tensioned material, and a subtle musical system.
+
+The current prototype implements this direction with a compact Web Audio synthesis layer rather than packaged samples. Picking up and placing a note produces a muted board thump. Each accepted link bows the next note in a C-major scale, and the link that completes the route resolves into a softer C-major violin phrase and tonic chord. Invalid evidence drops gently in pitch. Sound effects can be disabled independently in Settings and no state depends on hearing a cue.
 
 ### Core cues
 
@@ -236,6 +238,8 @@ On supported devices and with permission:
 - distinct but restrained completion pattern.
 
 Haptics are optional reinforcement and must never be required.
+
+The prototype now maps these states to restrained vibration patterns through the browser capability when available. Haptics have their own device-local switch and silently no-op on unsupported hardware.
 
 ## Completion moment
 
